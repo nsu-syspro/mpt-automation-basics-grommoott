@@ -1,7 +1,7 @@
 FROM gcc
 RUN apt update
 RUN apt-get install jq -y
-WORKDIR /
+WORKDIR /app
 
 COPY .test .test
 COPY test test
