@@ -10,4 +10,4 @@ COPY Makefile Makefile
 COPY config.json config.json
 
 RUN make check
-ENTRYPOINT ["/build/wordcount"]
+ENTRYPOINT ["/app/build/wordcount"]
