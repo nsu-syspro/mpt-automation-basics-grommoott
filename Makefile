@@ -11,7 +11,7 @@ EXPECTEDS = $(TESTS:.txt=.expected)
 
 all: $(TARGET)
 
-check: $(TESTS)
+check: $(TARGET) $(TESTS)
 	@echo ""
 
 $(TESTS): ./build/test/%.test: ./test/%.txt ./test/%.expected $(TARGET)

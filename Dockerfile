@@ -1,8 +1,13 @@
 FROM gcc
 RUN apt update
-RUN apt upgrade -y
 RUN apt-get install jq -y
 WORKDIR /
-COPY . .
-RUN make check && make all
+
+COPY .test .test
+COPY test test
+COPY src src
+COPY Makefile Makefile
+COPY config.json config.json
+
+RUN make check
 ENTRYPOINT ["/build/wordcount"]
