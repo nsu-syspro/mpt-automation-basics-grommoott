@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-// Configurationoo
+// Configuration
 #ifndef NAME
 #define NAME "wordcount"
 #endif

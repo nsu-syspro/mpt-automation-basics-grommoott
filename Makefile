@@ -6,7 +6,7 @@ CONFIG = config.json
 TARGET = ./build/$(NAME)
 
 INS = $(wildcard ./test/*.txt)
-TESTS = $(INS:./test/%.txt=./build/test/%.test)
+TESTS = $(INS:./test/%.txt=./test/%.test)
 EXPECTEDS = $(TESTS:.txt=.expected)
 
 all: $(TARGET)
@@ -14,13 +14,8 @@ all: $(TARGET)
 check: $(TARGET) $(TESTS)
 	@echo ""
 
-$(TESTS): ./build/test/%.test: ./test/%.txt ./test/%.expected $(TARGET)
-	@echo "Running $*..."
-	@$(TARGET) < ./test/$*.txt > ./test/$*.output
-	@diff ./test/$*.expected ./test/$*.output
-	@rm ./test/$*.output
-	@mkdir -p build/test
-	@touch $@
+$(TESTS): ./%.test: ./%.txt ./%.expected $(TARGET)
+	@$(TARGET) < ./$*.txt | diff -u ./$*.expected -
 
 $(TARGET): $(SOURCES) $(CONFIG)
 	@mkdir -p build
